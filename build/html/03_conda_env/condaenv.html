@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>conda virtual env &mdash; BNL SciServer User Guide  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6c58340b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Data Transfer using globus" href="../02_data_transfer/globus.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #343131" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            BNL SciServer User Guide
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01_getting_started/Instructions.html">Basic Info/Instructions for BNL CSI SciServer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_transfer/globus.html">Data Transfer using globus</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">conda virtual env</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #343131" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">BNL SciServer User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">conda virtual env</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/03_conda_env/condaenv.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="conda-virtual-env">
+<h1>conda virtual env<a class="headerlink" href="#conda-virtual-env" title="Link to this heading"></a></h1>
+<p>Conda uses few directory for packages and default virtualenvs path. They can be set in ~/.condarc .  However ~/.condarc as well as other ~/.* files  will be lost once sciserver container restart.   Suggest  create a init script in persistent storage area which you run everytime you start/restart container.  And the init script can copy a saved .condarc file to ~/.condarc.
+Here is a sample .condarc file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>envs_dirs:
+<span class="w">  </span>-<span class="w"> </span>/home/idies/workspace/Storage/<span class="o">{</span>YourUsername<span class="o">}</span>/persistent/conda/conda_envs
+pkgs_dirs:
+<span class="w">  </span>-<span class="w"> </span>/home/idies/workspace/Storage/<span class="o">{</span>YourUserName<span class="o">}</span>/persistent/conda/conda_pkgs
+</pre></div>
+</div>
+<p>Make sure mentioned directory exist
+An Sample init.sh script you run everytime start/restart container can be like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#/bin/bash</span>
+
+
+<span class="c1"># script you run every time your container start or restart</span>
+<span class="c1">#to customerize container</span>
+
+
+<span class="c1">#please change it to your username </span>
+<span class="c1">#in the container it maybe found under </span>
+<span class="c1">#ls  ${HOME}/workspace/Storage/</span>
+<span class="nv">MY_USERNAME</span><span class="o">=</span>johndoe
+
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">MY_TMPDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/workspace/Temporary/<span class="si">${</span><span class="nv">MY_USERNAME</span><span class="si">}</span>/scratch/tmp
+
+
+
+
+<span class="c1">#if you need preserver those directory, </span>
+rm<span class="w"> </span>-rf<span class="w"> </span>~/.cache
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-d<span class="w"> </span><span class="si">${</span><span class="nv">MY_TMPDIR</span><span class="si">}</span>/.cache<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">MY_TMPDIR</span><span class="si">}</span>/.cache
+<span class="k">fi</span>
+ln<span class="w"> </span>-s<span class="w"> </span><span class="si">${</span><span class="nv">MY_TMPDIR</span><span class="si">}</span>/.cache<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.cache
+
+
+
+
+<span class="c1">##if you really going to generate huge temperary data in /tmp</span>
+<span class="c1">## consider redefine TMPDIR</span>
+<span class="c1">#export TMPDIR=$MY_TMPDIR</span>
+
+
+<span class="c1"># if you have  customerized .bashrc etc , copy it over or link it.</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">my_username</span><span class="o">=</span><span class="k">$(</span>ls<span class="w"> </span>/home/idies/workspace/Storage<span class="k">)</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span>/home/idies/workspace/Storage/<span class="si">${</span><span class="nv">my_username</span><span class="si">}</span>/persistent/init/.bashrc<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+cp<span class="w">  </span>/home/idies/workspace/Storage/<span class="si">${</span><span class="nv">my_username</span><span class="si">}</span>/persistent/init/.bashrc<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.bashrc
+<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w">  </span>/home/idies/workspace/Storage/<span class="si">${</span><span class="nv">my_username</span><span class="si">}</span>/persistent/init/.bashrc<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.bashrc
+<span class="k">fi</span>
+
+
+<span class="c1"># if you use conda env  and have .condarc might want cp or link</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span>/home/idies/workspace/Storage/<span class="si">${</span><span class="nv">my_username</span><span class="si">}</span>/persistent/conda/.condarc<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+cp<span class="w">  </span>/home/idies/workspace/Storage/<span class="si">${</span><span class="nv">my_username</span><span class="si">}</span>/persistent/conda/.condarc<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/
+ln<span class="w"> </span>-sf<span class="w">  </span>/home/idies/workspace/Storage/<span class="si">${</span><span class="nv">my_username</span><span class="si">}</span>/persistent/conda/.condarc<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.condarc
+<span class="k">fi</span>
+
+
+<span class="c1"># if you have created your own jupyter kernels</span>
+<span class="c1"># and made backup from ./local/hare/jupyter/kernels/</span>
+<span class="c1"># you can copy back to container or link it</span>
+<span class="c1"># if you want you can relink whole .local folder too</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-d<span class="w"> </span>/home/idies/workspace/Storage/<span class="si">${</span><span class="nv">my_username</span><span class="si">}</span>/persistent/conda/jupyter_kernels<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w"> </span><span class="c1">#cp  -r /home/idies/workspace/Storage/${my_username}/persistent/conda/jupyter_kernels/* ${HOME}/.local/share/jupyter/kernels/</span>
+<span class="w"> </span><span class="c1"># or use link</span>
+<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.local/share/jupyter/kernels/<span class="w">        </span><span class="c1"># assume you have backup</span>
+<span class="w"> </span>ln<span class="w"> </span>-s<span class="w">  </span>/home/idies/workspace/Storage/<span class="si">${</span><span class="nv">my_username</span><span class="si">}</span>/persistent/conda/jupyter_kernels<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.local/share/jupyter/kernels
+<span class="k">fi</span>
+<span class="c1">## some other .files/directories you may have made backup</span>
+<span class="c1"># e.g. .mozilla</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w">  </span>!<span class="w"> </span>-d<span class="w"> </span>/home/idies/workspace/Storage/<span class="si">${</span><span class="nv">my_username</span><span class="si">}</span>/persistent/init/.mozilla<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w"> </span>mkdir<span class="w"> </span>/home/idies/workspace/Storage/<span class="si">${</span><span class="nv">my_username</span><span class="si">}</span>/persistent/init/.mozilla
+<span class="k">fi</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-d<span class="w"> </span>/home/idies/.mozilla<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/home/idies/.mozilla
+<span class="k">fi</span>
+ln<span class="w"> </span>-s<span class="w"> </span>/home/idies/workspace/Storage/<span class="si">${</span><span class="nv">my_username</span><span class="si">}</span>/persistent/init/.mozilla<span class="w"> </span>/home/idies/.mozilla
+
+
+<span class="c1">#if your app creates any .* file or directory under ${HOME}</span>
+<span class="c1">#  you could  backup and link to persistent same way if do need preserver changes</span>
+<span class="c1"># e.g  ~/.nv , ~/.ipython , ~/.ipynb_checkpoints , ~/.conda  ~/.jupyter .....</span>
+</pre></div>
+</div>
+<p>Then to create conda virtualenv  for example with python3.10</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>my_testenv<span class="w">  </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
+<span class="c1">#activate env</span>
+<span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>my_testenv
+</pre></div>
+</div>
+<p>Install packages</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#install packages use conda </span>
+conda<span class="w"> </span>install<span class="w"> </span>numpy
+<span class="c1">#install package use pip</span>
+pip<span class="w"> </span>install<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>torchaudio
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, BNL SDCC Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Info/Instructions for BNL CSI SciServer &mdash; BNL SciServer User Guide  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6c58340b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data Transfer using globus" href="../02_data_transfer/globus.html" />
+    <link rel="prev" title="BNL SciServer User Guide" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #343131" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            BNL SciServer User Guide
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basic Info/Instructions for BNL CSI SciServer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_transfer/globus.html">Data Transfer using globus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_conda_env/condaenv.html">conda virtual env</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #343131" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">BNL SciServer User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Basic Info/Instructions for BNL CSI SciServer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/01_getting_started/Instructions.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="basic-info-instructions-for-bnl-csi-sciserver">
+<h1>Basic Info/Instructions for BNL CSI SciServer<a class="headerlink" href="#basic-info-instructions-for-bnl-csi-sciserver" title="Link to this heading"></a></h1>
+<section id="contact-help-info">
+<h2>Contact/Help info<a class="headerlink" href="#contact-help-info" title="Link to this heading"></a></h2>
+<p>To receive notifications about outages/changes or to converse with the BNL CSI SciServer Community, please subscribe to the mailing list, sciserver-csi-l&#64;lists.bnl.gov, at <a class="reference external" href="https://lists.bnl.gov/mailman/listinfo/sciserver-csi-l">https://lists.bnl.gov/mailman/listinfo/sciserver-csi-l</a>.</p>
+<p>Another option is to join the BNL CSI SciServer Mattermost channel: <a class="reference external" href="https://chat.sdcc.bnl.gov/bnl/channels/sciserver---users">https://chat.sdcc.bnl.gov/bnl/channels/sciserver—users</a></p>
+<p>To access this Mattermost channel, you must first register with BNL SDCC’s CILogon COmanage instance; please see the “Setting up COmanage” link at <a class="reference external" href="https://www.sdcc.bnl.gov/information/comanage-service">https://www.sdcc.bnl.gov/information/comanage-service</a>. For projects doing alot of development, or needing alot of support, we can create a private mattermost channel if you’d like? (contact the sciserver-csi-admins email below if interested in a private channel)</p>
+<p>For issues/problems with the BNL CSI SciServer deployment, please contact: <a class="reference external" href="mailto:sciserver-csi-admins&#37;&#52;&#48;brookhavenLab&#46;onmicrosoft&#46;com">sciserver-csi-admins<span>&#64;</span>brookhavenLab<span>&#46;</span>onmicrosoft<span>&#46;</span>com</a> and/or try the mailing list or Mattermost channel above.</p>
+<p>Or for help with SciServer in general, including API documentation, there’s also: <a class="reference external" href="https://www.sciserver.org/support/">https://www.sciserver.org/support/</a> or contact: <a class="reference external" href="mailto:sciserver-help&#37;&#52;&#48;jhu&#46;edu">sciserver-help<span>&#64;</span>jhu<span>&#46;</span>edu</a></p>
+</section>
+<section id="initial-registration">
+<h2>Initial Registration<a class="headerlink" href="#initial-registration" title="Link to this heading"></a></h2>
+<p>Currently, only a small set of Federated Identity Providers (IDPs) are permitted.
+[todo: provide link to list of currently permitted IDPs: currently just “Brookhaven National Laboratory” and “Brookhaven National Laboratory - SDCC.BNL.GOV”. WIP to permit other DOE IDPs participating in https://cilogon.org/idplist/ (raw json output), eg. ameslab, anl, fnal, ornl]
+[todo: limit the cilogon IDP menu to only include permitted IDPs.]</p>
+<ul class="simple">
+<li><p>Register with BNL SDCC’s CILogon COmanage instance; please follow “Setting up COmanage” at https://www.sdcc.bnl.gov/information/comanage-service Choose BNL instead of BNLSDCC if your don’t have SDCC account.</p></li>
+<li><p>It is recommanded to send us email sciserver-csi-admins&#64;brookhavenLab.onmicrosoft.com once you have submitted the request.</p></li>
+<li><p>Once above registration is approved, email sciserver-csi-admins&#64;brookhavenLab.onmicrosoft.com and request access to BNL CSI’s SciServer.</p></li>
+<li><p>Once above email request is granted, click the blue “Federated Login (via cilogon.org/COmanage)” button below and authenticate with a permitted IDP.</p></li>
+<li><p>On the next screen shown after that:</p>
+<ul>
+<li><p>Ignore the option on the left for linking an existing account.</p></li>
+<li><p>Click “Create Account”, you should then be logged in and redirected to the SciServer “Dashboard”.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="working-with-files">
+<h2>Working with files<a class="headerlink" href="#working-with-files" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Use “Files” to upload reasonably sized files/directories through the web interface. Browse into either your peristent or scratch space and drag and drop files and/or use the “Upload” button. You can upload/download tar/zip file with size  upto 250GB.  If you have very large files/directories you’d like to upload, please contact <a class="reference external" href="mailto:sciserver-csi-admins&#37;&#52;&#48;brookhavenLab&#46;onmicrosoft&#46;com">sciserver-csi-admins<span>&#64;</span>brookhavenLab<span>&#46;</span>onmicrosoft<span>&#46;</span>com</a> for help ingesting large datasets.</p></li>
+</ul>
+</section>
+<section id="starting-containers">
+<h2>Starting Containers<a class="headerlink" href="#starting-containers" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Use “Compute” to run interactive compute jobs (eg. Jupyter notebooks or Xwindows sessions).</p>
+<ul>
+<li><p>Within “Compute”, click the green “Create container” button.</p></li>
+<li><p>Enter a “Container name” for your container (eg. “[your_username]_test_1”).</p></li>
+<li><p>Select a “Domain” to choose the hardware resources allocated (details for the selected domain are displayed below the pull down menu).</p></li>
+<li><p>Select your desired “Compute Image”. (details for the selected image are displayed below the pull down menu; select “VNC -KDE-GPU” for an Xwindows session)</p></li>
+<li><p>Check the desired User and Data volumes to mount within your container.</p></li>
+<li><p>Click the green “Create” button.</p></li>
+<li><p>If the container started successfully and shows “running” for Status, click on the Name of the container. If it shows “stopped” try refreshing the page. If clicking on the Name opens a new tab with the dashboard, close the new tab and try clicking on the Name again, might have been too fast?</p></li>
+<li><p>At this point you should be in a working Jupyter or Xwindows environment and able to read/write files to your storage volumes:</p>
+<ul>
+<li><p>~/workspace/Storage/[username]/persistent</p></li>
+<li><p>~/workspace/Temporary/[username]/scratch</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><span style="color: red;"><strong>Please stop the container (red square icon) after you finished interactive session, as it allocates computing resoruces!</strong></span></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, BNL SDCC Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

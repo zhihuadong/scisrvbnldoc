@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Transfer Use File app in SciServer &mdash; BNL SciServer User Guide  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6c58340b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="conda virtual env" href="../03_conda_env/condaenv.html" />
+    <link rel="prev" title="Basic Info/Instructions for BNL CSI SciServer" href="../01_getting_started/Instructions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #343131" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            BNL SciServer User Guide
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01_getting_started/Instructions.html">Basic Info/Instructions for BNL CSI SciServer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Transfer Use File app in SciServer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#use-bnl-sdcc-as-stage-of-data-transfer">Use BNL SDCC as stage of data transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#use-dtn-container-for-ssh-sftp-based-data-transfer">Use dtn container for ssh/sftp based data transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#use-globus-personal-connect-client">Use Globus Personal Connect client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_conda_env/condaenv.html">conda virtual env</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #343131" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">BNL SciServer User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Data Transfer Use File app in SciServer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/02_data_transfer/globus.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-transfer-use-file-app-in-sciserver">
+<h1>Data Transfer Use File app in SciServer<a class="headerlink" href="#data-transfer-use-file-app-in-sciserver" title="Link to this heading"></a></h1>
+<p>There is a File app on SciServer dashboard, which you can do basic file transfer between your workstation/laptop and SciServer. You can upload and download files up to 250GB in file size.  So if you have  directory of files which you need transfer , you may just tar/zip it and tranfer with File app.</p>
+<p>From any compute container , you can zip/unzip, tar/untar.</p>
+<p>However File app can not transfer files from/to other servers on internet. Also not conveninet if you want transfer large data sets or need keep updating part of the data.</p>
+</section>
+<section id="use-bnl-sdcc-as-stage-of-data-transfer">
+<h1>Use BNL SDCC as stage of data transfer<a class="headerlink" href="#use-bnl-sdcc-as-stage-of-data-transfer" title="Link to this heading"></a></h1>
+<p>If you have BNL SDCC account , you can use  Globus to transfer file from out side to SDCC’s Globus endpoint. Or can use sftp to transfer files to SDCC’s sftp server sftp.sdcc.bnl.gov. On SDCC’s account users can use /hpcgpfs01/scratch area for temperary data up to 2TB ( files subject for deletion if untouched for 30 days) .<br />
+PLease note sftp.sdcc.bnl.gov only use ssh public key and no shell access, only sftp.</p>
+<p>Transfer data from SciServer to SDCC storage can be done from any computing container with sftp to 198.125.209.28 or 198.125.209.29.
+But you need copy of your private key to sciserver  for this to work. Please understand the security risk before you do it.</p>
+</section>
+<section id="use-dtn-container-for-ssh-sftp-based-data-transfer">
+<h1>Use dtn container for ssh/sftp based data transfer<a class="headerlink" href="#use-dtn-container-for-ssh-sftp-based-data-transfer" title="Link to this heading"></a></h1>
+<p>On SciServer compute, you can create and start  a conatainer in “sciserver-dtn1” compute domain use the “vnc-kde-dtn” image. Make sure you mount the volumes which you want transfer data to/from when you create container ,some user volumes are maybe not mounted by default.</p>
+<p>Unlike other computing  container, this compute domain do have outging ssh access to internet.  From the terminal you can start ssh/scp/sftp/rsync sessions to internet ssh/sftp servers.</p>
+<p>It also make ssh-key based git push/pull easier</p>
+<p>Please remember stop the container after stop data transfer. There are limited number of sessions can be started on this compute domain. They are shared by all users.</p>
+</section>
+<section id="use-globus-personal-connect-client">
+<h1>Use Globus Personal Connect client<a class="headerlink" href="#use-globus-personal-connect-client" title="Link to this heading"></a></h1>
+<p>This is useful if you want transfer data between sciserver and data located on a public Globus Endpoint.</p>
+<p>Globus is a secure, high-performance data management platform designed for research and academic environments. It simplifies the process of transferring, sharing, and synchronizing large datasets across distributed storage systems, including supercomputers, cloud storage, and personal devices.</p>
+<section id="initial-setup">
+<h2>Initial setup<a class="headerlink" href="#initial-setup" title="Link to this heading"></a></h2>
+<p>Before using Globus on SciServer for the first time, some setup is required.</p>
+<section id="start-a-sciserver-session-using-the-sciserver-dtn1-domain-and-the-vnc-kde-dtn-image">
+<h3>0. Start a SciServer Session using the sciserver-dtn1 domain and the vnc-kde-dtn image:<a class="headerlink" href="#start-a-sciserver-session-using-the-sciserver-dtn1-domain-and-the-vnc-kde-dtn-image" title="Link to this heading"></a></h3>
+<p><img alt="alt" src="../_images/sciserver_dtn.PNG" />
+Connect to this session and follow the steps below.</p>
+</section>
+<section id="create-a-personal-globus-endpoint">
+<h3>1. Create a personal globus endpoint.<a class="headerlink" href="#create-a-personal-globus-endpoint" title="Link to this heading"></a></h3>
+<p>Create an endpoint and generate a key for the endpoint setup <a class="reference external" href="https://app.globus.org/collections/gcp?generate_key=true">https://app.globus.org/collections/gcp?generate_key=true</a>. You will need to provide a name for your endpoint and  copy the key displayed on the webpage. You will need to paste it in the upcomming setup step.</p>
+</section>
+<section id="start-globus-connect-personal-and-use-the-key-to-setup-your-personal-endpoint">
+<h3>2. Start Globus Connect Personal and use the key to setup your personal endpoint.<a class="headerlink" href="#start-globus-connect-personal-and-use-the-key-to-setup-your-personal-endpoint" title="Link to this heading"></a></h3>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>$ globusconnectpersonal -dir /home/idies/workspace/Storage/[your_username]/persistent/.globusonline -setup --setup-key ${your_setup_key}
+</pre></div>
+</div>
+</section>
+<section id="start-your-globus-connect-personal-endpoint">
+<h3>3. Start your Globus Connect Personal endpoint.<a class="headerlink" href="#start-your-globus-connect-personal-endpoint" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>globusconnectpersonal<span class="w"> </span>-dir<span class="w"> </span>/home/idies/workspace/Storage/<span class="o">[</span>your_username<span class="o">]</span>/persistent/.globusonline<span class="w"> </span>-start<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+<p>You should now be able to see your personal endpoint when using the Collection search bar on <a class="reference external" href="https://app.globus.org/file-manager?two_pane=true">https://app.globus.org/file-manager?two_pane=true</a>, shown below.</p>
+<p><img alt="alt" src="../_images/globus_collection.PNG" /></p>
+</section>
+<section id="stop-your-endpoint">
+<h3>6. Stop your endpoint:<a class="headerlink" href="#stop-your-endpoint" title="Link to this heading"></a></h3>
+<p>Once your data transfer is complete, you can stop your endpoint with:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>$ globusconnectpersonal -dir /home/idies/workspace/Storage/[your_username]/persistent/.globusonline -stop
+</pre></div>
+</div>
+</section>
+</section>
+<section id="regular-use">
+<h2>Regular use<a class="headerlink" href="#regular-use" title="Link to this heading"></a></h2>
+<p>After completing the initial setup as detailed above, your globus-related dot files should be located in a persistent storage location. Therefore, you should be able to start and stop your endpoint simply by using the start and stop commands.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>globusconnectpersonal<span class="w"> </span>-dir<span class="w"> </span>/home/idies/workspace/Storage/<span class="o">[</span>your_username<span class="o">]</span>/persistent/.globusonline<span class="w"> </span>-start<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>$ globusconnectpersonal -dir /home/idies/workspace/Storage/[your_username]/persistent/.globusonline -stop
+</pre></div>
+</div>
+<p>For longer transfers, make sure your session stays active until the transfer completes.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, BNL SDCC Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
